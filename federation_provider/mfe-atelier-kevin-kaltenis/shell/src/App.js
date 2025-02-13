@@ -1,20 +1,12 @@
-import React, { Suspense } from 'react';
-
-const Header = React.lazy(() => import('header/Header'));
+import React from 'react';
 
 const App = () => {
   return (
     <div>
-      <Suspense fallback={<div>Chargement du header...</div>}>
-        <Header />
-      </Suspense>
-
-      <main style={{ padding: '2rem' }}>
-        <h2>Bienvenue sur Efreiflix</h2>
-        <p>Contenu principal de l'application...</p>
-      </main>
+      <h2>Je suis sur le Shell 🚀</h2>
+      <button onClick={() => alert('Button in Header clicked!')}>Click Me</button>
     </div>
   );
 };
 
-export default App;
+export default App;  

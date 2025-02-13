@@ -18,17 +18,18 @@ module.exports = {
           presets: ["@babel/preset-react"], 
         },
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   plugins: [
-    
     new ModuleFederationPlugin({
       name: "shell", 
       remotes: {
-        
         header: 'header@http://localhost:3001/remoteEntry.js', 
       },
-
       shared: {
         react: { 
           singleton: true,     
@@ -46,4 +47,4 @@ module.exports = {
       template: "./public/index.html",
     }),
   ],
-}; 
+};

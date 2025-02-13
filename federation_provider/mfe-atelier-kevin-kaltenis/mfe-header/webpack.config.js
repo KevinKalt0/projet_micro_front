@@ -21,7 +21,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'http://localhost:3001/', // URL publique de base pour les assets (IMPORTANT pour Module Federation)
+    publicPath: 'http://localhost:3000/', // URL publique de base pour les assets (IMPORTANT pour Module Federation)
   },
   devServer: {
     port: 3001, // Port du serveur de développement (IMPORTANT : doit être unique pour chaque MFE)

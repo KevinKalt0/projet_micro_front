@@ -2,14 +2,11 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header style={{ 
-      padding: '1rem', 
-      backgroundColor: '#1a1a1a',
-      color: 'white'
-    }}>
-      <h1>Efreiflix</h1>
-    </header>
+    <div>
+      <h2>Je suis sur le Header 🚀</h2>
+      <button onClick={() => alert('Button in Header clicked!')}>Click Me</button>
+    </div>
   );
 };
 
-export default Header; 
+export default Header;  
