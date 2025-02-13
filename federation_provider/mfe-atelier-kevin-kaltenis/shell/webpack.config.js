@@ -1,47 +1,49 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin;
-const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+  entry: "./src/index.js",
+  mode: "development",
+  devServer: {
+    port: 3000, 
+    hot: true,  
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
+        loader: "babel-loader",
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
+        options: {
+          presets: ["@babel/preset-react"], 
         },
       },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    compress: true,
-    port: 9000,
-  },
   plugins: [
+    
     new ModuleFederationPlugin({
-      name: 'shell',
+      name: "shell", 
       remotes: {
-        header: 'header@http://localhost:3001/remoteEntry.js',
+        
+        header: 'header@http://localhost:3001/remoteEntry.js', 
+      },
+
+      shared: {
+        react: { 
+          singleton: true,     
+          requiredVersion: false, 
+          eager: true        
+        },
+        "react-dom": { 
+          singleton: true,
+          requiredVersion: false,
+          eager: true
+        }
       },
     }),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: "./public/index.html",
     }),
   ],
-};
+}; 

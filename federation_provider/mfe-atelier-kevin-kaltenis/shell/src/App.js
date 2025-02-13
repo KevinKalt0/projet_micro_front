@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
-// Import the remote module
 const Header = React.lazy(() => import('header/Header'));
 
-function App() {
+const App = () => {
   return (
     <div>
-      <React.Suspense fallback="Loading Header...">
+      <Suspense fallback={<div>Chargement du header...</div>}>
         <Header />
-      </React.Suspense>
-      <h1>Welcome to the Shell Application</h1>
+      </Suspense>
+
+      <main style={{ padding: '2rem' }}>
+        <h2>Bienvenue sur Efreiflix</h2>
+        <p>Contenu principal de l'application...</p>
+      </main>
     </div>
   );
-}
+};
 
 export default App;
